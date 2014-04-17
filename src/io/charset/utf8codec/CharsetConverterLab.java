@@ -100,6 +100,9 @@ System.out.println("OK: CodePoint
 
 package io.charset.utf8codec;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -170,6 +173,46 @@ public class CharsetConverterLab {
     }
 
     public static byte[] convertCodepointToUTF8(int[] codePoint) {
-        throw new UnsupportedOperationException("Realize me!");
+        try(ByteArrayOutputStream baos = new ByteArrayOutputStream()){
+        for(int code :codePoint){
+            CodePointToUTF8(baos,code);
+        }
+        baos.flush();
+        return baos.toByteArray();
+        }catch (IOException e){
+            //NOP
+        }
+        return new byte[] {};
+    }
+
+    private static void CodePointToUTF8(OutputStream os, int code) throws IOException {
+        if((code & 0b01111111)== code){ // 1 byte
+            os.write(code);
+        }else if((code & 0b0111_11111111)== code){// 2 byte
+            os.write(0b11000000 | code>>>6);
+            os.write(code & 0b00111111 | 0b10000000);
+        }else if((code & 0b11111111_11111111)== code){// 3 byte
+            os.write(0b11100000 | code>>>12);
+            os.write(code >>> 6 & 0b00111111 | 0b10000000);
+            os.write(code & 0b00111111 | 0b10000000);
+        }else if((code & 0b00011111_11111111_11111111)== code){// 4 byte
+            os.write(0b11110000 | code>>>18);
+            os.write(code >>> 12 & 0b00111111 | 0b10000000);
+            os.write(code >>> 6 & 0b00111111 | 0b10000000);
+            os.write(code & 0b00111111 | 0b10000000);
+        }else if((code & 0b00000011_11111111_11111111_11111111)== code){// 5 byte
+            os.write(0b11111000 | code>>>24);
+            os.write(code >>> 18 & 0b00111111 | 0b10000000);
+            os.write(code >>> 12 & 0b00111111 | 0b10000000);
+            os.write(code >>> 6 & 0b00111111 | 0b10000000);
+            os.write(code & 0b00111111 | 0b10000000);
+        }else if((code & 0b01111111_11111111_11111111_11111111)== code){// 6 byte
+            os.write(0b11111100 | code>>>30);
+            os.write(code >>> 26 & 0b00111111 | 0b10000000);
+            os.write(code >>> 18 & 0b00111111 | 0b10000000);
+            os.write(code >>> 12 & 0b00111111 | 0b10000000);
+            os.write(code >>> 6 & 0b00111111 | 0b10000000);
+            os.write(code & 0b00111111 | 0b10000000);
+        }
     }
 }
