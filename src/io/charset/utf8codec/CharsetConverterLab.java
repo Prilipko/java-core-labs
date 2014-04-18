@@ -1,8 +1,8 @@
 
 /**
  * Created by Worker on 17.04.14.
- */
-/*
+ *
+*
 
 ЗАДАНИЕ
 Необходимо реализовать методы
@@ -145,7 +145,7 @@ public class CharsetConverterLab {
         int[] maxCodepointArray = new int[utf8.length];
         int indexCodepoint = 0;
         int indexUtf8 = 0;
-        for (; indexCodepoint < maxCodepointArray.length && indexUtf8 < utf8.length ; indexCodepoint++) {
+        for (; indexCodepoint < maxCodepointArray.length && indexUtf8 < utf8.length; indexCodepoint++) {
             byte startUTF8Byte = utf8[indexUtf8];
             int resultCodepoint;
             if ((startUTF8Byte & 0b10000000) == 0) {//1 byte
@@ -187,7 +187,7 @@ public class CharsetConverterLab {
             maxCodepointArray[indexCodepoint] = resultCodepoint;
         }
         if (maxCodepointArray.length != indexCodepoint) {
-            return Arrays.copyOf(maxCodepointArray, indexCodepoint );
+            return Arrays.copyOf(maxCodepointArray, indexCodepoint);
         } else {
             return maxCodepointArray;
         }
