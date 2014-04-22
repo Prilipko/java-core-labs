@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FileLab_LookFor {
 
-    static class BigImage implements FileFilter{
+    static class BigImage implements FileFilter {
 
         @Override
         public boolean accept(File pathname) {
@@ -35,7 +35,7 @@ public class FileLab_LookFor {
     }
 
     private static List<File> doLookForBigImage(File file) {
-        ArrayList<File> list= new ArrayList<>();
+        ArrayList<File> list = new ArrayList<>();
         if (file.isFile()) {
             list.add(file);
         } else {
