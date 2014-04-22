@@ -40,8 +40,8 @@ public class FileLab_LookFor {
             list.add(file);
         } else {
             File[] fileArray = file.listFiles(new BigImage());
-            for (File newfile : fileArray) {
-                list.addAll(doLookForBigImage(newfile));
+            for (File newFile : fileArray) {
+                list.addAll(doLookForBigImage(newFile));
             }
         }
         return list;
