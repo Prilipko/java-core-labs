@@ -6,11 +6,11 @@ package collections.eq_hash_toStr.EntityA;
  */
 
 
-
 public class EntityA {
     private int age;
     private int height;
     private String name;
+    private static int hash=0;
 
     public int getAge() {
         return age;
@@ -38,17 +38,28 @@ public class EntityA {
 
     @Override
     public int hashCode() {
-        return (age*31+height)*31 + name.hashCode();
+//        return 0;
+        return (age * 31 + height) * 31 + name.hashCode();
+//        return hash++;
     }
 
     @Override
     public boolean equals(Object obj) {
-
-        throw new UnsupportedOperationException();
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+//        return false;
+        EntityA that = (EntityA) obj;
+        return age == that.age && height == that.height
+                && (name == that.name
+                || (name != null && name.equals(that.getName())));
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        return "[name: " + name + " age: " + age + " height: " + height + "]";
     }
 }
