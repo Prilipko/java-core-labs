@@ -1,12 +1,17 @@
 package collections.eq_hash_toStr.EntityA;
 
 
+import java.util.Comparator;
+
 /**
  * Created by Worker on 25.04.14.
  */
 
 
-public class EntityA {
+
+
+
+public class EntityA implements Comparable<EntityA>{
     private int age;
     private int height;
     private String name;
@@ -40,6 +45,7 @@ public class EntityA {
     public int hashCode() {
 //        return 0;
         return (age * 31 + height) * 31 + name.hashCode();
+//        return age + height;
 //        return hash++;
     }
 
@@ -61,5 +67,11 @@ public class EntityA {
     @Override
     public String toString() {
         return "[name: " + name + " age: " + age + " height: " + height + "]";
+    }
+
+    @Override
+    public int compareTo(EntityA o) {
+        return name.compareTo(o.getName());
+//        return 0;
     }
 }
