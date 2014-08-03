@@ -3,10 +3,7 @@ package collections.eq_hash_toStr.EntityC;
 import collections.eq_hash_toStr.EntityA.EntityA;
 import collections.eq_hash_toStr.EntityB.EntityB;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class EntityC {
     private final EntityA entity;
@@ -31,38 +28,131 @@ public class EntityC {
         return map;
     }
 
+
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = entity.hashCode();
-        for( EntityB entityB : list ){
-            result = result * prime + entityB.hashCode();
-        }
+        int result = 1;
+        result = result * prime + (entity == null ? 0 : entity.hashCode());
+        result = result * prime + (list == null ? 0 : list.hashCode());
 
-        Iterator<Set<EntityA>> keysIterator = map.keySet().iterator();
-        while(keysIterator.hasNext()){
-             Iterator<EntityA> setEntityAIterator = keysIterator.next().iterator();
-            while (setEntityAIterator.hasNext()){
-                result = result * prime + setEntityAIterator.next().hashCode();
+        if (map != null) {
+            for (Map.Entry<Set<EntityA>, List<EntityB[]>> entry : map.entrySet()) {
+                result = result * prime + entry.getKey().hashCode();
+                for (EntityB[] valueArray : entry.getValue()) {
+                    result = result * prime + Arrays.hashCode(valueArray);
+                }
             }
         }
-
-        Iterator<List<EntityB[]>> valueIterator = map.values().iterator();
-        while (valueIterator.hasNext()){
-            List<EntityB[]> listEntityBArrays = valueIterator.next();
-            //TODO: Hash Code all entity.
-        }
-
-        return (entity.hashCode()*31 + list.hashCode())*31 + map.hashCode();
+        return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        throw new UnsupportedOperationException();
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+        try {
+            EntityC that = (EntityC) obj;
+            if (!entity.equals(that.entity)) {
+                return false;
+            }
+            if (!list.equals(that.list)) {
+                return false;
+            }
+
+            if (that.getMap().size() != map.size()) {
+                return false;
+            }
+            for (Map.Entry<Set<EntityA>, List<EntityB[]>> e : map.entrySet()) {
+                Set<EntityA> key = e.getKey();
+                List<EntityB[]> value = e.getValue();
+                if (value == null) {
+                    if (!(that.getMap().get(key) == null && that.getMap().containsKey(key)))
+                        return false;
+                } else {
+                    List<EntityB[]> thatList = that.getMap().get(key);
+                    List<EntityB[]> thisList = map.get(key);
+
+                    ListIterator<EntityB[]> e1 = thisList.listIterator();
+                    ListIterator<EntityB[]> e2 = thatList.listIterator();
+                    while (e1.hasNext() && e2.hasNext()) {
+                        EntityB[] o1 = e1.next();
+                        EntityB[] o2 = e2.next();
+                        if (o1 == null && o2 == null) {
+                            continue;
+                        }
+                        if (o1 == null ^ o2 == null) {
+                            return false;
+                        }
+                        if (!Arrays.equals(o1, o2)) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        } catch (ClassCastException unused) {
+            return false;
+        } catch (NullPointerException unused) {
+            return false;
+        }
+        return true;
     }
+
 
     @Override
     public String toString() {
-        return "[entity"+entity.toString()+ list.toString()+map.toString()+"}";
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("EntityC{");
+        builder.append("entity=");
+        builder.append(entity);
+        builder.append(", list=");
+        builder.append(list);
+        builder.append(", map=");
+
+        Iterator<Map.Entry<Set<EntityA>, List<EntityB[]>>> i = map.entrySet().iterator();
+        if (! i.hasNext()){
+            builder.append("{}");
+        } else{
+        builder.append('{');
+        for (;;) {
+            Map.Entry<Set<EntityA>, List<EntityB[]>> e = i.next();
+            Set<EntityA> key = e.getKey();
+            List<EntityB[]> value = e.getValue();
+            builder.append(key   == this ? "(this Map)" : key);
+            builder.append('=');
+
+            if(value == this){
+                builder.append("(this Map)");
+            }else{
+                Iterator<EntityB[]> it = value.iterator();
+                if (! it.hasNext()){
+                    builder.append("[]");
+                } else{
+                    builder.append('[');
+                for (;;) {
+                    EntityB[] arr = it.next();
+                    builder.append(Arrays.toString(arr));
+                    if (! it.hasNext()){
+                        builder.append(']');
+                        break;
+                    }
+                    builder.append(',').append(' ');
+                }
+                }
+            }
+            if (! i.hasNext()){
+                builder.append('}');
+                break;
+            }
+            builder.append(',').append(' ');
+        }
+        }
+        builder.append('}');
+        return builder.toString();
     }
 }

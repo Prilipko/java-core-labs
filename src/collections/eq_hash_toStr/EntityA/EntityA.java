@@ -8,14 +8,11 @@ import java.util.Comparator;
  */
 
 
-
-
-
-public class EntityA implements Comparable<EntityA>{
+public class EntityA implements Comparable<EntityA> {
     private int age;
     private int height;
     private String name;
-    private static int hash=0;
+    private static int hash = 0;
 
     public int getAge() {
         return age;
@@ -44,7 +41,7 @@ public class EntityA implements Comparable<EntityA>{
     @Override
     public int hashCode() {
 //        return 0;
-        return (age * 31 + height) * 31 + name.hashCode();
+        return (age * 31 + height) * 31 + (name == null ? 0 : name.hashCode());
 //        return age + height;
 //        return hash++;
     }

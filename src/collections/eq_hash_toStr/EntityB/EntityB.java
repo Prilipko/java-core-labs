@@ -41,6 +41,9 @@ public class EntityB {
 
     @Override
     public String toString() {
-        return "[ stringArr: "+ Arrays.deepToString(stringArr)+", doubleArr: "+Arrays.toString(doubleArr)+"]";
+        return "EntityB{" +
+                "stringArr=" + Arrays.deepToString(stringArr) +
+                ", doubleArr=" + Arrays.toString(doubleArr) +
+                '}';
     }
 }

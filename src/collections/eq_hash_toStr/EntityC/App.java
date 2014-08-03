@@ -42,49 +42,52 @@ public class App {
         list.add(new EntityB( new String[][] {{"10","11"},{"12","13"}}, new double[] {14,15} ));
 
         aEntitySetMap = new EntityA();
-        aEntitySetMap.setName("14");
-        aEntitySetMap.setAge(15);
-        aEntitySetMap.setHeight(16);
+        aEntitySetMap.setName("16");
+        aEntitySetMap.setAge(17);
+        aEntitySetMap.setHeight(18);
         aSetMap.add(aEntitySetMap);
 
         aEntitySetMap = new EntityA();
-        aEntitySetMap.setName("17");
-        aEntitySetMap.setAge(18);
-        aEntitySetMap.setHeight(19);
+        aEntitySetMap.setName("19");
+        aEntitySetMap.setAge(20);
+        aEntitySetMap.setHeight(21);
         aSetMap.add(aEntitySetMap);
 
         arrayBListMap = new EntityB[] {
-          new EntityB( new String[][] {{"20","21"},{"22","23"}}, new double[] {24,25} ),
-          new EntityB( new String[][] {{"26","27"},{"28","29"}}, new double[] {30,31} )
+          new EntityB( new String[][] {{"22","23"},{"24","25"}}, new double[] {26,27} ),
+          new EntityB( new String[][] {{"28","29"},{"30","31"}}, new double[] {32,33} )
         };
         abListMap.add(arrayBListMap);
         arrayBListMap = new EntityB[] {
-                new EntityB( new String[][] {{"32","33"},{"34","35"}}, new double[] {36,37} ),
-                new EntityB( new String[][] {{"38","39"},{"40","41"}}, new double[] {42,43} )
+                new EntityB( new String[][] {{"34","35"},{"36","37"}}, new double[] {38,39} ),
+                new EntityB( new String[][] {{"40","41"},{"42","43"}}, new double[] {44,45} )
         };
         abListMap.add(arrayBListMap);
         map.put(aSetMap,abListMap);
 
+        aSetMap = new HashSet<>();
+
         aEntitySetMap = new EntityA();
-        aEntitySetMap.setName("44");
-        aEntitySetMap.setAge(45);
-        aEntitySetMap.setHeight(46);
+        aEntitySetMap.setName("46");
+        aEntitySetMap.setAge(47);
+        aEntitySetMap.setHeight(48);
         aSetMap.add(aEntitySetMap);
 
         aEntitySetMap = new EntityA();
-        aEntitySetMap.setName("47");
-        aEntitySetMap.setAge(48);
-        aEntitySetMap.setHeight(49);
+        aEntitySetMap.setName("49");
+        aEntitySetMap.setAge(50);
+        aEntitySetMap.setHeight(51);
         aSetMap.add(aEntitySetMap);
 
+        abListMap = new ArrayList<>();
         arrayBListMap = new EntityB[] {
-                new EntityB( new String[][] {{"50","51"},{"52","53"}}, new double[] {54,55} ),
-                new EntityB( new String[][] {{"56","57"},{"58","59"}}, new double[] {50,61} )
+                new EntityB( new String[][] {{"52","53"},{"54","55"}}, new double[] {56,57} ),
+                new EntityB( new String[][] {{"58","59"},{"60","61"}}, new double[] {62,63} )
         };
         abListMap.add(arrayBListMap);
         arrayBListMap = new EntityB[] {
-                new EntityB( new String[][] {{"62","63"},{"64","65"}}, new double[] {66,67} ),
-                new EntityB( new String[][] {{"68","69"},{"70","71"}}, new double[] {72,73} )
+                new EntityB( new String[][] {{"64","65"},{"66","67"}}, new double[] {68,69} ),
+                new EntityB( new String[][] {{"70","71"},{"72","73"}}, new double[] {74,75} )
         };
         abListMap.add(arrayBListMap);
         map.put(aSetMap,abListMap);
@@ -133,6 +136,8 @@ public class App {
         abListMap.add(arrayBListMap);
         map.put(aSetMap,abListMap);
 
+        aSetMap = new HashSet<>();
+
         aEntitySetMap = new EntityA();
         aEntitySetMap.setName("118");
         aEntitySetMap.setAge(119);
@@ -144,6 +149,8 @@ public class App {
         aEntitySetMap.setAge(122);
         aEntitySetMap.setHeight(123);
         aSetMap.add(aEntitySetMap);
+
+        abListMap = new ArrayList<>();
 
         arrayBListMap = new EntityB[] {
                 new EntityB( new String[][] {{"124","125"},{"126","127"}}, new double[] {128,129} ),
@@ -175,49 +182,52 @@ public class App {
         list.add(new EntityB( new String[][] {{"10","11"},{"12","13"}}, new double[] {14,15} ));
 
         aEntitySetMap = new EntityA();
-        aEntitySetMap.setName("14");
-        aEntitySetMap.setAge(15);
-        aEntitySetMap.setHeight(16);
+        aEntitySetMap.setName("16");
+        aEntitySetMap.setAge(17);
+        aEntitySetMap.setHeight(18);
         aSetMap.add(aEntitySetMap);
 
         aEntitySetMap = new EntityA();
-        aEntitySetMap.setName("17");
-        aEntitySetMap.setAge(18);
-        aEntitySetMap.setHeight(19);
+        aEntitySetMap.setName("19");
+        aEntitySetMap.setAge(20);
+        aEntitySetMap.setHeight(21);
         aSetMap.add(aEntitySetMap);
 
         arrayBListMap = new EntityB[] {
-                new EntityB( new String[][] {{"20","21"},{"22","23"}}, new double[] {24,25} ),
-                new EntityB( new String[][] {{"26","27"},{"28","29"}}, new double[] {30,31} )
+                new EntityB( new String[][] {{"22","23"},{"24","25"}}, new double[] {26,27} ),
+                new EntityB( new String[][] {{"28","29"},{"30","31"}}, new double[] {32,33} )
         };
         abListMap.add(arrayBListMap);
         arrayBListMap = new EntityB[] {
-                new EntityB( new String[][] {{"32","33"},{"34","35"}}, new double[] {36,37} ),
-                new EntityB( new String[][] {{"38","39"},{"40","41"}}, new double[] {42,43} )
+                new EntityB( new String[][] {{"34","35"},{"36","37"}}, new double[] {38,39} ),
+                new EntityB( new String[][] {{"40","41"},{"42","43"}}, new double[] {44,45} )
         };
         abListMap.add(arrayBListMap);
         map.put(aSetMap,abListMap);
 
+        aSetMap = new HashSet<>();
+
         aEntitySetMap = new EntityA();
-        aEntitySetMap.setName("44");
-        aEntitySetMap.setAge(45);
-        aEntitySetMap.setHeight(46);
+        aEntitySetMap.setName("46");
+        aEntitySetMap.setAge(47);
+        aEntitySetMap.setHeight(48);
         aSetMap.add(aEntitySetMap);
 
         aEntitySetMap = new EntityA();
-        aEntitySetMap.setName("47");
-        aEntitySetMap.setAge(48);
-        aEntitySetMap.setHeight(49);
+        aEntitySetMap.setName("49");
+        aEntitySetMap.setAge(50);
+        aEntitySetMap.setHeight(51);
         aSetMap.add(aEntitySetMap);
 
+        abListMap = new ArrayList<>();
         arrayBListMap = new EntityB[] {
-                new EntityB( new String[][] {{"50","51"},{"52","53"}}, new double[] {54,55} ),
-                new EntityB( new String[][] {{"56","57"},{"58","59"}}, new double[] {50,61} )
+                new EntityB( new String[][] {{"52","53"},{"54","55"}}, new double[] {56,57} ),
+                new EntityB( new String[][] {{"58","59"},{"60","61"}}, new double[] {62,63} )
         };
         abListMap.add(arrayBListMap);
         arrayBListMap = new EntityB[] {
-                new EntityB( new String[][] {{"62","63"},{"64","65"}}, new double[] {66,67} ),
-                new EntityB( new String[][] {{"68","69"},{"70","71"}}, new double[] {72,73} )
+                new EntityB( new String[][] {{"64","65"},{"66","67"}}, new double[] {68,69} ),
+                new EntityB( new String[][] {{"70","71"},{"72","73"}}, new double[] {74,75} )
         };
         abListMap.add(arrayBListMap);
         map.put(aSetMap,abListMap);
