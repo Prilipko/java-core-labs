@@ -2,9 +2,7 @@ package collections.impl;
 
 import java.util.Iterator;
 
-/**
- * Created by Worker on 10.08.14.
- */
+
 public interface SimpleList<T> {
 
     // *** *** *** ADD *** *** ***
