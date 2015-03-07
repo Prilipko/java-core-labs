@@ -95,7 +95,7 @@ public class SimpleArrayList_q<E> implements SimpleList<E> {
             if (i >= elementData.length) {
                 throw new ConcurrentModificationException();
             }
-            while (i != size ) {
+            while (i != size) {
                 consumer.accept((E) elementData[i++]);
             }
             // update once at end of iteration to reduce heap write traffic
@@ -147,7 +147,12 @@ public class SimpleArrayList_q<E> implements SimpleList<E> {
     @Override
     public boolean remove(Object element) {
         if (element == null) { // exception
-            throw new NullPointerException("Can not remove null element");
+            for (int k = 0; k < size; k++) {
+                if (null == data[k]) {
+                    remove(k);
+                    return true;
+                }
+            }
         } else { // look for
             for (int k = 0; k < size; k++) {
                 if (element.equals(data[k])) {
@@ -193,6 +198,7 @@ public class SimpleArrayList_q<E> implements SimpleList<E> {
             if (!(o1 == null ? o2 == null : o1.equals(o2)))
                 return false;
         }
+
 
         return true;
     }

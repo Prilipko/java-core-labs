@@ -1,6 +1,11 @@
 package collections.impl.SimpleLinkedList;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.function.Consumer;
+
 import collections.impl.SimpleList;
 
 public class SimpleLinkedList_q<E> implements SimpleList<E> {
@@ -38,7 +43,43 @@ public class SimpleLinkedList_q<E> implements SimpleList<E> {
     }
 
     public Iterator<E> iterator() {
-        throw new UnsupportedOperationException();
+        return new Itr();
+    }
+
+    class Itr implements Iterator<E> {
+
+        private Node<E> itr = first; // head
+        private Node<E> del = null; // head
+
+        @Override
+        public boolean hasNext() {
+            return itr != null;
+        }
+
+        @Override
+        public E next() {
+            del = itr;
+            itr = itr.next;
+            return del.item;
+        }
+
+        @Override
+        public void remove() {
+            if (itr != null) {
+                unlink(del);
+            }
+        }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        public void forEachRemaining(Consumer<? super E> consumer) {
+            Objects.requireNonNull(consumer);
+            Node<E> itr = first; // head
+            while (itr != null) {
+                consumer.accept((E) itr.item);
+                itr = itr.next;
+            }
+        }
     }
 
     // *** *** *** CHECK *** *** ***
@@ -65,7 +106,22 @@ public class SimpleLinkedList_q<E> implements SimpleList<E> {
 
     // *** *** *** REMOVE *** *** ***
     public boolean remove(Object o) {
-        throw new UnsupportedOperationException();
+        if (o == null) {
+            for (Node<E> x = first; x != null; x = x.next) {
+                if (x.item == null) {
+                    unlink(x);
+                    return true;
+                }
+            }
+        } else {
+            for (Node<E> x = first; x != null; x = x.next) {
+                if (o.equals(x.item)) {
+                    unlink(x);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public E remove(int index) {
@@ -76,17 +132,59 @@ public class SimpleLinkedList_q<E> implements SimpleList<E> {
     // *** *** *** OBJECT METHODS *** *** ***
     @Override
     public boolean equals(Object o) {
-        throw new UnsupportedOperationException();
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SimpleLinkedList_q that = (SimpleLinkedList_q) o;
+
+        if (size != that.size) return false;
+
+        if (first == that.first)
+            return true;
+        if (first == null || that.first == null)
+            return false;
+
+        Node<E> x = first;
+        for (Object oThat : that) {
+            if (!(oThat == null ? x.item == null : oThat.equals(x.item)))
+                return false;
+            x = x.next;
+        }
+        return true;
     }
 
     @Override
     public int hashCode() {
-        throw new UnsupportedOperationException();
+        if (first == null) {
+            return 0;
+        }
+        int result = 1;
+        for (Node<E> x = first; x != null; x = x.next) {
+            E element = x.item;
+            result = 31 * result + (element == null ? 0 : element.hashCode());
+        }
+        return result;
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        if (first == null)
+            return "null";
+
+        int iMax = size - 1;
+        if (iMax == -1)
+            return "[]";
+
+        StringBuilder b = new StringBuilder();
+        b.append('[');
+        for (Node<E> x = first; x != null; x = x.next) {
+            E element = x.item;
+            b.append(String.valueOf(element));
+            if (x.next != null) {
+                b.append(", ");
+            }
+        }
+        return b.append(']').toString();
     }
 
     // ---------- internals ----------

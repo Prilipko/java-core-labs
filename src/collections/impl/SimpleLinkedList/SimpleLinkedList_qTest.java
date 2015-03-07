@@ -1,30 +1,30 @@
-package collections.impl.SimpleArrayList;
+package collections.impl.SimpleLinkedList;
 
 import collections.impl.SimpleList;
-import org.junit.Test;
 import org.junit.Before;
+import org.junit.Test;
 
 import java.util.Iterator;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
- * Created by Alexander on 18.12.14.
+ * Created by Worker on 07.03.15.
  */
-public class SimpleArrayList_qTest {
+public class SimpleLinkedList_qTest {
     SimpleList<String> list;
     SimpleList<String> second;
 
     @Before
     public void setUp() throws Exception {
-        list = new SimpleArrayList_q<>();
+        list = new SimpleLinkedList_q<>();
         list.add("1");
         list.add("2");
         list.add("3");
-        second = new SimpleArrayList_q<>();
+        second = new SimpleLinkedList_q<>();
     }
-
     @Test
     public void testIterator() throws Exception {
         Iterator<String> iterator = list.iterator();
@@ -52,6 +52,7 @@ public class SimpleArrayList_qTest {
         assertTrue(list.remove("2"));
         assertFalse(list.contains("2"));
     }
+
 
     @Test
     public void testRemove_null() throws Exception {
@@ -89,4 +90,6 @@ public class SimpleArrayList_qTest {
     public void testToString() throws Exception {
         assertEquals("[1, 2, 3]", list.toString());
     }
+
+
 }

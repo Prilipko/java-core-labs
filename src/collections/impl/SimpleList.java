@@ -3,7 +3,7 @@ package collections.impl;
 import java.util.Iterator;
 
 
-public interface SimpleList<T> {
+public interface SimpleList<T> extends Iterable<T> {
 
     // *** *** *** ADD *** *** ***
     public boolean add(T newElement);
