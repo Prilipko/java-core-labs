@@ -1,6 +1,6 @@
 package thread.interrupt.interruptable_buffer;
 
-public class InterruptBuffer{//_q {
+public class InterruptBuffer {//_q {
     private ThreadNode producers = null;
     private ThreadNode consumers = null;
     private Integer elem = null;
@@ -9,6 +9,7 @@ public class InterruptBuffer{//_q {
         while (elem != null) {
             try {
                 // ?
+                producers = new ThreadNode(Thread.currentThread(), producers);
                 //
                 this.wait();
             } catch (InterruptedException e) {/*NOP*/}
@@ -17,6 +18,7 @@ public class InterruptBuffer{//_q {
         if (consumers != null) {
             consumers.thread.interrupt();
             // ?
+            consumers = consumers.nextNode;
             //
         }
     }
@@ -25,6 +27,7 @@ public class InterruptBuffer{//_q {
         while (elem == null) {
             try {
                 // ?
+                consumers = new ThreadNode(Thread.currentThread(), consumers);
                 //
                 this.wait();
             } catch (InterruptedException e) {/*NOP*/}
@@ -34,6 +37,7 @@ public class InterruptBuffer{//_q {
         if (producers != null) {
             producers.thread.interrupt();
             // ?
+            producers = producers.nextNode;
             //
         }
         return result;
