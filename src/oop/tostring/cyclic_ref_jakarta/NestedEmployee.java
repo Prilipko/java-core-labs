@@ -2,7 +2,7 @@ package oop.tostring.cyclic_ref_jakarta;
 
 import oop.tostring.plain_address.Address;
 import oop.tostring.plain_phone.Phone;
-//import org.apache.commons.lang3.builder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class NestedEmployee {
     private int age;
@@ -24,14 +24,11 @@ public class NestedEmployee {
 
     @Override
     public String toString() {
-        return "";//new ToStringBuilder(this)
-
-//        return "NestedEmployee[" +
-//                "age=" + age +
-//                ", name='" + name + '\'' +
-//                ", address=" + address +
-//                ", phone=" + phone +
-//                ']';
+        return new ToStringBuilder(this).
+                append("age",age).
+                append("name",name).
+                append("address",address).
+                append("phone",phone).toString();
     }
 
     public int getAge() {
